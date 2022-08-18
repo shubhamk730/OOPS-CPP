@@ -1,0 +1,311 @@
+Empty class has a size of 1 byte to track it.
+
+By default access modifier is private.
+
+Data members are also called as properties, state.
+Member functions are also called as methods, behaviour.
+
+Access Modifiers : 
+    1 -> public -> can be accessed anywhere
+    2 -> private -> can be accessed inside class only by help of member functions and member variables
+    3 -> protected -> same as private but private members and member function can be inherited(used in child class)
+
+Getter and setters
+
+Constructor : 
+    1. Invoked at the time of object creation
+    2. No return type
+    3. No inout parameter
+
+"this" stores address of current object.
+
+Default costructor terminates(over ridden) from memory as soon as you implement your own Constructor.
+Default copy constructor follows shllow copy (i.e, values changed in obj1 reflect in obj2 as well(only reference types)).
+Constructor called only once at the time of creation.
+
+Shallow copy accesses same memory for different objects.
+Deep copy creates new values for every value.
+
+To deallocate memory we use DESTRUCTOR. At the end of object's lifetime.
+Destructor has :    
+    1. no return type (~className())
+    2. same name as class
+    3. no parameters
+
+There already exists default destructor you can replace it by creating your own.
+
+** -> You have to manually call Destructor for dynamically created objects.
+Destructor called only once at the time of deletion.
+
+
+Static keyword :
+    Creates a data member that belongs to class.
+    could be accessed with objects but not recommended.
+    Access using scope resolution operator.
+    
+Static Functions :
+    Can be accessed via class only
+    Do not have access to this keyword as they belong to class not object.
+    ** -> Can access only static members
+    
+
+
+
+
+
+4 PILLARS OF OOPS:
+    Encapsulation (Info/ data hiding)
+    Abstraction   (implementation hiding)
+    Inheritance
+    Polymorphism
+
+
+
+
+Encapsulation
+
+** -> Fully encapsulated class is one in which all data members are private.
+
+Advantages of encapsulation : 
+    1. Data hiding -> increases security
+    2. Helps marking class as read only.(using getters)
+    3. Code reusability
+    4. Helps in unit testing.00
+
+
+
+
+
+
+
+
+
+
+INHERITANCE:
+
+** -> private data member of any class can not be inherited.
+** -> protected are same private members, as they are not accessible outside class, but they are different in a way that protected members are inherited and accessible by child class,
+
+Types of inheritance : 
+    1. Single Inheritance (A -> B)
+    2. Multi Level Inheritance (A -> B -> C)
+    3. Multiple Inheritance (Single class inherits from multiple classes)
+    4. Heirarchical Inheritance. ( One parent class is inherited by many children classes)
+    5. Hybrid Inheritance. ( Combination of more than one type of inheritance),
+
+Inheritance ambiguity -> solve using scope resolution oprerator
+
+CONSTRUCTORS IN INHERITANCE:
+    CONSTRUCTORS IN DERIVED CLASS :
+        1. Use of constructors in derived classes is permitted.
+        2. If base class constructor does not have any arguments, there is no need of any constructor in derived class.
+        3. If there are one or more arguments in the base class constructor, derived class needs to pass the arguments to the base class constructor.
+        4. If both base and derived classes have constructor, base class constructor executes first.
+
+    CONSTRUCTORS IN MULTIPLE INHERITANCE:
+        1. Base classes are constructed int the order in which they appear in class declaration.
+            eg, 
+                class C : public B, public A{
+                    // something
+                }
+                -> B will be constructed first then A (B appears first).
+        
+        2. The constructors are executed in the order of inheritance.
+        
+    -> C++ supports special syntax for passing arguments to multiple base classes.
+
+    ** -> Virtual base class:
+            1. Constructors for virtual base classes are invoked before non virtual base class.
+            2. If there are multiple virtual base classes, they are invoked in the order of declaration.
+            3. Any non virtual base class are then constructed before the derived class constructor is executed.
+
+
+
+
+
+
+
+
+
+POLYMORPHISM: Poly-> many, morph -> forms
+
+It is of 2 types :
+    1. Compile time polymorphism (Static Polymorphism)
+    2. Run time polymorphism (Dynamic Polymorphism)
+
+-> Compile Time Polymorphism :
+
+    Polymorphism is known at the time of compilation only.
+    Early Binding, i.e, binding of address of function will be decided at the compile time.
+
+    It is of two type:
+        1. Function overloading
+        2. Operator overloading
+        
+For achieving polymorphism function signature must be different, return type does not matter
+
+Operator Overloading:
+    Operators that can't be overridden are:
+        1. :: (Scope resolution)
+        2. .*
+        3. .
+        4. ?: (Ternary Operator)
+    Rest all operators are allowed to be overridden.
+
+    Syntax :
+        return_type operator+(args){
+            // function body
+        }
+        
+        return_type operator* (args){
+            // function body
+        }
+
+        if we are adding two numbers we need to pass only 1 as argument because "this" will be pointing to the first;
+
+
+
+-> Run Time Polymorphism
+    Method overriding 
+        Rules for method(function) over riding:
+            1. Method of parent class and child class must have same name.
+            2. Method of parent class and child class must have same parameters.
+            3. It is possible through inheritance only.
+    
+    Late Binding, i.e, binding of address of function will be decided at the run time.
+
+
+
+
+
+
+
+
+
+
+ABSTRACTION:
+    -> helps implement "Implementation hiding"
+    -> shows only necessary information.
+    -> implemented with help of access modifiers
+
+    Advantages:
+        1. Only you can make changes to data / function, no one else can.
+        2. It makes application secure by hiding bakcground detials.
+        3. Increases reusability of code.
+        4. Avoids duplication of the code. 
+
+
+Difference b/w encapsulation and abstraction : 
+    https://stackoverflow.com/questions/742341/difference-between-abstraction-and-encapsulation
+
+
+
+---------------------------------------------------------
+
+FRIEND Functions
+    -> If a function is declared as friend function, it can access a class's private data.
+    
+    Properties of friend function:
+        1. Not in the scope of the class. (Function does not belong to the class)
+        2. Since it is not in the scope of the class, class objects can not invoke it.
+        3. It is invoked independently like independent functions. 
+        4. Usually contains objects as arguments.
+        5. Can be declared inside public or private section of the class.
+        6. It needs objects to access class properties(class data members).
+
+
+FRIEND CLASSES AND DATA MEMBERS:
+    -> If a class is a friend of another class it can access other class's private data without restrictions.
+
+    Suppose if a class has 100 functions, you can not manually make every function a friend function,
+    instead make the class as friend of other class.
+
+
+
+
+
+
+Virtual Base Class:
+    -> solves diamond problem.
+    
+                ________Class A_________
+                |                       |
+               Class B               Class C
+                |________        _______|
+                         |      |
+                          Class D
+
+                1. Class A's properties(variables) will be inherited by both B & C,
+                2. Class D inherits from both B & C.
+                3. Suppose we inherit A's variable x in D this causes error as both B & C have it.
+
+    -> This problem is solved by Virtual base class.
+    -> protects from duplication and ambiguity.
+    
+
+
+
+INITIALIZATION LIST:
+    Syntax for initialization list in constructor:
+    constructor(argument-list) : initialization-section{
+        assignment + other Code;
+    }
+
+    Eg : 
+        class Node
+        {
+            int data;
+            Node* left;
+            Node* right;
+            public:
+                Node() : data(-1), left(NULL), right(NULL) {
+                    cout << "constructor executed" << endl;
+                }
+                Node(int x) : data(x), left(NULL), right(NULL) {
+                    cout << "constructor executed" << endl;
+                }
+        };
+    -> Use initialization section when constructor body is complex.
+
+
+BASE CLASS POINTER POINTING TO DERIVED CLASS:
+    1.  It can point to derived class object.
+    2.  If you call a function via such pointer, Base class's function will be called.
+    3.  If it is pointing to derived class, only the properties which have been inherited from base class will be accessible.
+
+
+
+
+
+VIRTUAL FUNCTIONS:
+    1. Used for implementing run time ploymorphism.
+    2. If a function is made virtual then,
+        If a base class pointer is pointing to a derived class object then, the function for the derived class will be called.
+        If function is not virtual(in base class), then base class function will be called. 
+
+    RULES for VIRTUAL FUNCTIONS:
+        1. They can not be static.
+        2. They are accessed by object pointers.
+        3. They can be friend of another class.
+        4. A virtual function in base class might not be used.
+        5. If a virtual function is defined in the base class, there is no necessity of redefining it in the derived class.
+
+
+PURE VIRTUAL FUNCTION:
+    The virtual function for which there must be definition in derived class.
+    do nothing function -> pure virtual function.
+
+    eg : 
+        class base{
+            public:     
+                virtual void display() = 0; //pure virtual function
+        };
+
+
+ABSTRACT CLASS:
+    ** -> 1. The class which has atleast one pure virtual function.
+    2. It is only be used for inheritance.
+    3. Objects for abstract class can not be created.
+    4. Used only for designing.
+
+
